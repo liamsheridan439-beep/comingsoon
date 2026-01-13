@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coming Soon - Liam Sheridan</title>
+  
+  <!-- Google Fonts: Mr Dafoe -->
+  <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #121212;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Mr Dafoe', cursive;
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: #ffffff; /* white */
+    }
+    p {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+      color: #bbb;
+    }
+    #countdown {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 2rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .time-box {
+      background: #222;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      min-width: 80px;
+    }
+    .number {
+      font-weight: bold;
+      font-size: 2.5rem;
+      color: #4CAF50; /* Noah Kahan green */
+      font-family: 'Mr Dafoe', cursive;
+    }
+    .label {
+      font-size: 1rem;
+      color: #bbb;
+      margin-top: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Liam Sheridan</h1>
+  <p>Coming Soon</p>
+
+  <div id="countdown">
+    <div class="time-box">
+      <div id="days" class="number">00</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="time-box">
+      <div id="hours" class="number">00</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="time-box">
+      <div id="minutes" class="number">00</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="time-box">
+      <div id="seconds" class="number">00</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <script>
+    const countdownDate = new Date(2026, 0, 17, 17, 0, 0).getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<p>The event has started!</p>';
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+</body>
+</html>
